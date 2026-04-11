@@ -1,6 +1,7 @@
 package com.demo.backGestor.modelos;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class Trabajador {
     @Column(name = "APELLIDOS" , length = 50)
     private String apellidos ;
 
+    @Email
     @Column(name = "EMAIL" , nullable = false , length = 255)
     private String email ;
 
@@ -44,10 +46,6 @@ public class Trabajador {
 
     public int getId_Trabajador() {
         return id_Trabajador;
-    }
-
-    public void setId_Trabajador(int id_Trabajador) {
-        this.id_Trabajador = id_Trabajador;
     }
 
     public Empresa getEmpresa() {
