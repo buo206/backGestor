@@ -36,6 +36,10 @@ public class Trabajo {
     @Column(name = "ESTADO" , length = 1)
     private Estado estado ;
 
+    public Trabajo(){
+
+    }
+
     public int getId_Trabajo() {
         return id_Trabajo;
     }

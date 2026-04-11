@@ -22,6 +22,10 @@ public class Material {
     @Column(name="STOCK" , length = 10)
     private int stock ;
 
+    public Material(){
+
+    }
+
     public int getId_Material() {
         return id_Material;
     }

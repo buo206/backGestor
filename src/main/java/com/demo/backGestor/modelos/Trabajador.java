@@ -44,6 +44,10 @@ public class Trabajador {
     @Column(name = "FECHA_CREACION" , nullable = false )
     private Date fecha_Creacion;
 
+    public Trabajador(){
+
+    }
+
     public int getId_Trabajador() {
         return id_Trabajador;
     }
