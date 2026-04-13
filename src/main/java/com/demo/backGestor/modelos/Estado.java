@@ -1,8 +1,8 @@
 package com.demo.backGestor.modelos;
 
-/*ESTADO ES P PROCESO , F FINALIZADO , E ESPERA*/
+/*ESTADO ES P PROCESO , F FINALIZADO , E ESPERA , R Revision*/
 public enum Estado{
-    P , F , E;
+    P , F , E , R;
     public static Estado getEstado(String state){
         state = state.toUpperCase();
         Estado resultado = Estado.E;
@@ -16,7 +16,9 @@ public enum Estado{
             case "ESPERA":
                 resultado =  Estado.E;
                 break ;
-
+            case "REVISION":
+                resultado = Estado.R ;
+                break;
         }
 
         return resultado ;
