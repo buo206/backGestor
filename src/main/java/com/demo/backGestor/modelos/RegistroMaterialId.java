@@ -9,22 +9,22 @@ import java.util.Objects;
 @Embeddable
 public class RegistroMaterialId implements Serializable {
     @Column(name = "ID_MATERIAL")
-    private Integer idMateril ;
+    private Integer idMaterial ;
 
     @Column(name = "ID_TRABAJO")
     private Integer idTrabajo ;
 
     public RegistroMaterialId(Integer idMateril , Integer idTrabajo) {
-        this.idMateril = idMateril;
+        this.idMaterial = idMateril;
         this.idTrabajo = idTrabajo;
     }
 
     public Integer getIdMateril() {
-        return idMateril;
+        return idMaterial;
     }
 
     public void setIdMateril(Integer idMateril) {
-        this.idMateril = idMateril;
+        this.idMaterial = idMateril;
     }
 
     public Integer getIdTrabajo() {
@@ -39,11 +39,11 @@ public class RegistroMaterialId implements Serializable {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         RegistroMaterialId that = (RegistroMaterialId) o;
-        return Objects.equals(idMateril, that.idMateril) && Objects.equals(idTrabajo, that.idTrabajo);
+        return Objects.equals(idMaterial, that.idMaterial) && Objects.equals(idTrabajo, that.idTrabajo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idMateril, idTrabajo);
+        return Objects.hash(idMaterial, idTrabajo);
     }
 }

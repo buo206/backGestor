@@ -29,7 +29,7 @@ public class Empresa {
     private String apellidos ;
 
     @Column(name = "DIRECCION" , length = 90)
-    private String dirreccion;
+    private String direccion;
 
     @Column(name = "FECHA_CREACION" , nullable = false )
     private Date fecha_Creacion;
@@ -74,11 +74,11 @@ public class Empresa {
     }
 
     public String getDirreccion() {
-        return dirreccion;
+        return direccion;
     }
 
     public void setDirreccion(String dirreccion) {
-        this.dirreccion = dirreccion;
+        this.direccion = dirreccion;
     }
 
     public LocalDate getFecha_Creacion() {
