@@ -10,7 +10,7 @@ public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_MATERIAL")
-    private int id_Material ;
+    private int idMaterial ;
 
     @ManyToOne
     @JoinColumn(name = "ID_EMPRESA")
@@ -27,7 +27,7 @@ public class Material {
     }
 
     public int getId_Material() {
-        return id_Material;
+        return idMaterial;
     }
 
     public Empresa getEmpresa() {

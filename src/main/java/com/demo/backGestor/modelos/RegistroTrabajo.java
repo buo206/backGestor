@@ -25,7 +25,7 @@ public class RegistroTrabajo {
     public RegistroTrabajo() {}
 
     public RegistroTrabajo(Trabajo trabajo, Trabajador trabajador, String rol) {
-        this.id = new RegistroTrabajoId(trabajo.getId_Trabajo(), trabajador.getId_Trabajador());
+        this.id = new RegistroTrabajoId(trabajo.getId_Trabajo(), trabajador.getIdTrabajador());
         this.trabajo = trabajo;
         this.trabajador = trabajador;
         this.rol = rol;

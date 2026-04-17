@@ -13,7 +13,7 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_EMPRESA")
-    private int id_Empresa ;
+    private int idEmpresa ;
 
     @Email
     @Column(name = "EMAIL" , nullable = false , length = 255)
@@ -38,7 +38,7 @@ public class Empresa {
     }
 
     public int getId_Empresa() {
-        return id_Empresa;
+        return idEmpresa;
     }
 
     public String getEmail() {

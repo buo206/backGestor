@@ -13,7 +13,7 @@ public class Trabajador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TRABAJADOR")
-    private int id_Trabajador ;
+    private int idTrabajador ;
 
     @ManyToOne
     @JoinColumn(name = "ID_EMPRESA")
@@ -48,8 +48,8 @@ public class Trabajador {
 
     }
 
-    public int getId_Trabajador() {
-        return id_Trabajador;
+    public int getIdTrabajador() {
+        return idTrabajador;
     }
 
     public Empresa getEmpresa() {
@@ -122,5 +122,21 @@ public class Trabajador {
 
     public void setFecha_Creacion(Date fecha_Creacion) {
         this.fecha_Creacion = fecha_Creacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Trabajador{" +
+                "idTrabajador=" + idTrabajador +
+                ", id_Empresa=" + empresa.getId_Empresa() +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", numeroTelefono='" + numeroTelefono + '\'' +
+                ", dni='" + dni + '\'' +
+                ", dirreccion='" + dirreccion + '\'' +
+                ", fecha_Creacion=" + fecha_Creacion +
+                '}';
     }
 }
