@@ -25,8 +25,26 @@ public class TrabajadorService {
         this.repo = repo;
     }
 
-    public Trabajador validarEmailPassword(String email , String password){
-        return repo.findByEmailAndPassword(email , password).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email o password incorectos , no se ha encontrado nigun trabajador"));
+    public TrabajadorDTO validarEmailPassword(String email , String password){
+        Optional<Trabajador> trabajador  = repo.findByEmailAndPassword(email , password);
+        if(trabajador.isPresent()){
+            Trabajador t = trabajador.get();
+
+            return new TrabajadorDTO(
+                    t.getIdTrabajador(),
+                    t.getEmpresa().getId_Empresa() ,
+                    t.getNombre(),
+                    t.getApellidos(),
+                    t.getEmail(),
+                    t.getPassword(),
+                    t.getNumeroTelefono(),
+                    t.getDni(),
+                    t.getDirreccion(),
+                    t.getFecha_Creacion()
+            );
+        }else{
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email o password incorectos , no se ha encontrado nigun trabajador") ;
+        }
     }
 
     public List<TrabajadorListaDTO> listar(int id ){
@@ -40,10 +58,22 @@ public class TrabajadorService {
         return listaDTO;
     }
 
-    public Trabajador crear(Trabajador trabajador){
+    public TrabajadorDTO crear(Trabajador trabajador){
         Optional<Trabajador> aux = repo.findByEmail(trabajador.getEmail()) ;
         if(aux.isEmpty()){
-            return repo.save(trabajador);
+            Trabajador t=  repo.save(trabajador);
+            return new TrabajadorDTO(
+                    t.getIdTrabajador(),
+                    t.getEmpresa().getId_Empresa() ,
+                    t.getNombre(),
+                    t.getApellidos(),
+                    t.getEmail(),
+                    t.getPassword(),
+                    t.getNumeroTelefono(),
+                    t.getDni(),
+                    t.getDirreccion(),
+                    t.getFecha_Creacion()
+            );
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email");
         }
@@ -61,6 +91,7 @@ public class TrabajadorService {
                     t.getNombre(),
                     t.getApellidos(),
                     t.getEmail(),
+                    t.getPassword(),
                     t.getNumeroTelefono(),
                     t.getDni(),
                     t.getDirreccion(),

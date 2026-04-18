@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/web/trabajador")
+@RequestMapping("/res/trabajador")
 public class TrabajadorResController {
     private final TrabajadorService service ;
 
@@ -22,8 +22,8 @@ public class TrabajadorResController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Trabajador> login(@RequestBody LoginDTO login){
-        Trabajador trabajador = service.validarEmailPassword(login.email() , login.password());
+    public ResponseEntity<TrabajadorDTO> login(@RequestBody LoginDTO login){
+        TrabajadorDTO trabajador = service.validarEmailPassword(login.email() , login.password());
         return ResponseEntity.ok(trabajador);
     }
 
@@ -34,8 +34,8 @@ public class TrabajadorResController {
     }
 
     @PostMapping("/alta")
-    public ResponseEntity<Trabajador> crear(@RequestBody Trabajador trabajador){
-        Trabajador tr = service.crear(trabajador);
+    public ResponseEntity<TrabajadorDTO> crear(@RequestBody Trabajador trabajador){
+        TrabajadorDTO tr = service.crear(trabajador);
         return ResponseEntity.ok(tr);
     }
 

@@ -9,6 +9,7 @@ public record TrabajadorDTO(
         String nombre,
         String apellidos,
         String email,
+        String password ,
         String numeroTelefono,
         String dni,
         String dirreccion,
