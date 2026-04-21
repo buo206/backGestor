@@ -12,7 +12,7 @@ public class Trabajo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TRABAJO")
-    private int id_Trabajo;
+    private int idTrabajo;
 
     @ManyToOne
     @JoinColumn(name = "ID_EMPRESA")
@@ -33,15 +33,17 @@ public class Trabajo {
     @Column(name = "ANOTACION" , length = 300)
     private String anotacion;
 
-    @Column(name = "ESTADO" , length = 1)
-    private Estado estado ;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ESTADO", length = 1, nullable = false)
+    private Estado estado;
+
 
     public Trabajo(){
 
     }
 
     public int getId_Trabajo() {
-        return id_Trabajo;
+        return idTrabajo;
     }
 
     public Empresa getEmpresa() {

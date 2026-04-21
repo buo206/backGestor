@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://ww.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>taskRam</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>Tareas  ==></h1>
+<a th:href="@{/clientes/nuevo}">Nuevo cliente</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="c : ${trabajos}">
+        <td th:text="${c.idTrabajo}"></td>
+        <td th:text="${c.titulo}"></td>
+        <td th:text="${c.estado}"></td>
+        <td>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
