@@ -1,8 +1,10 @@
 package com.demo.backGestor.modelos;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.util.HashMap;
 
 @Entity
@@ -25,10 +27,12 @@ public class Trabajo {
     private String descripcion ;
 
     @Column(name = "FECHA_INICIO" , nullable = false )
-    private Date fecha_Inicio ;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate fechaInicio ;
 
     @Column(name = "FECHA_FINAL" , nullable = false )
-    private String fecha_Final ;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate fechaFinal ;
 
     @Column(name = "ANOTACION" , length = 300)
     private String anotacion;
@@ -42,8 +46,11 @@ public class Trabajo {
 
     }
 
-    public int getId_Trabajo() {
+    public int getIdTrabajo() {
         return idTrabajo;
+    }
+    public void setIdTrabajo(int idTrabajo) {
+        this.idTrabajo = idTrabajo;
     }
 
     public Empresa getEmpresa() {
@@ -70,20 +77,20 @@ public class Trabajo {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha_Inicio() {
-        return fecha_Inicio;
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha_Inicio(Date fecha_Inicio) {
-        this.fecha_Inicio = fecha_Inicio;
+    public void setFechaInicio(LocalDate fecha_Inicio) {
+        this.fechaInicio = fecha_Inicio;
     }
 
-    public String getFecha_Final() {
-        return fecha_Final;
+    public LocalDate getFechaFinal() {
+        return fechaFinal;
     }
 
-    public void setFecha_Final(String fecha_Final) {
-        this.fecha_Final = fecha_Final;
+    public void setFechaFinal(LocalDate fecha_Final) {
+        this.fechaFinal = fecha_Final;
     }
 
     public String getAnotacion() {
@@ -98,8 +105,8 @@ public class Trabajo {
         return estado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = Estado.getEstado(estado) ;
+    public void setEstado(Estado estado) {
+        this.estado = estado ;
     }
 }
 

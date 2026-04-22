@@ -24,7 +24,7 @@ public class TrabajoService {
         ArrayList<TrabajoListaDTO> resultado = new ArrayList<>();
         if(!aux.isEmpty()){
             for(Trabajo tr : aux){
-                resultado.add(new TrabajoListaDTO(tr.getId_Trabajo() , tr.getTitulo() , tr.getEstado().toString()));
+                resultado.add(new TrabajoListaDTO(tr.getIdTrabajo() , tr.getTitulo() , tr.getEstado().toString()));
             }
         }
 

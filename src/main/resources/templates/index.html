@@ -1,40 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="https://ww.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>TaskRam</title>
-    <html lang="en" xmlns:th="https://ww.thymeleaf.org" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Web</title>
     <link rel="stylesheet" href="/index.css">
 </head>
 <body>
-    <header>
-        <h2>Mi Sitio Web</h2>
-        <nav>
-            <a th:href="@{'/trabajo/listar/'+ ${2}}">Trabajos</a>
-            <a href="#">Sobre mí</a>
-            <a href="#">Servicios</a>
-            <a href="#">Contacto</a>
-        </nav>
-    </header>
 
-    <div class="hero">
+<header class="header">
+    <img style="width: 120px ; height: auto" src="/logo.png">
+    <nav class="nav">
+        <a th:href="@{'/trabajo/listar/'+ ${2}}">Trabajos</a>
+        <a href="#">Servicios</a>
+        <a href="#">Proyectos</a>
+        <a href="#">Contacto</a>
+    </nav>
+</header>
+
+<main class="main">
+    <section class="dialogo">
         <h1>Bienvenido</h1>
-        <p>Esta es una página de presentación donde puedes mostrar quién eres, qué haces y cómo pueden contactarte.</p>
-        <button class="btn">Saber más</button>
-    </div>
-
-    <section>
-        <h2>Sobre mí</h2>
-        <p>Aquí puedes añadir información sobre ti o tu proyecto. Explica tu experiencia, tus valores o tu misión.</p>
+        <p>Esta es una página de presentación sencilla, limpia y centrada. Aquí puedes explicar quién eres y qué haces.</p>
     </section>
+</main>
 
-    <section>
-        <h2>Servicios</h2>
-        <p>Describe los servicios que ofreces o lo que hace tu página web.</p>
-    </section>
+<footer class="footer">
+    <p>© 2026 Mi Página Web</p>
+</footer>
 
-    <footer>
-        <p>© 2026 Mi Página Web - Todos los derechos reservados</p>
-    </footer>
 </body>
 </html>

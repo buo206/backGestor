@@ -1,0 +1,92 @@
+body {
+    padding: 15px 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1b5e20;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px 10px;
+}
+
+.card {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2e7d32;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #66bb6a;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .field {
+    flex: 1;
+}
+
+.btn {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #66bb6a;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #4caf50;
+}
+
+.link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: bold;
+}

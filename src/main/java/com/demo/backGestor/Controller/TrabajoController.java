@@ -1,6 +1,5 @@
 package com.demo.backGestor.Controller;
 
-import com.demo.backGestor.Dto.TrabajadorListaDTO;
 import com.demo.backGestor.Dto.TrabajoListaDTO;
 import com.demo.backGestor.Service.TrabajoService;
 import com.demo.backGestor.modelos.Trabajo;
@@ -28,7 +27,7 @@ public class TrabajoController {
         return "trabajoLista.html";
     }
 
-    @PostMapping("/editar/{idTrabajo}")
+    @GetMapping("/editar/{idTrabajo}")
     public String editar(@PathVariable int idTrabajo , Model model){
         model.addAttribute("trabajo", service.buscar(idTrabajo)) ;
         return "EditarTrabajo.html" ;
@@ -37,6 +36,6 @@ public class TrabajoController {
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute Trabajo trabajo){
         service.guardar(trabajo) ;
-        return "redirect:/listar/"+2;
+        return "redirect:listar/"+2;
     }
 }

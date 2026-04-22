@@ -1,21 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>TaskRam</title>
+    <title>TaskRam - Trabajo</title>
+    <link rel="stylesheet" href="/editarTrabajo.css">
 </head>
 <body>
-    <h1>Trabajo</h1>
-    <form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post">
-        <input type = "hidden" th:field="*{id}" />
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" />
-        <br/><br/>
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" />
-        <br/><br/>
-        <button type="submit">Guardar</button>
-    </form>
-    <a th:href="@{/clientes}">Volver al listado</a>
+
+<header class="header">
+    <div class="logo">TaskRam</div>
+</header>
+
+<main class="main">
+
+    <section class="card">
+        <h1>Trabajo</h1>
+        <img style="width: 120px ; height: auto" src="/logo.png">
+
+        <form th:action="@{/trabajo/guardar}" th:object="${trabajo}" method="post" class="form">
+
+            <input type="hidden" th:field="*{idTrabajo}" />
+            <input type="hidden" th:field="*{empresa}" />
+
+            <div class="field">
+                <label>Título</label>
+                <input type="text" th:field="*{titulo}" />
+            </div>
+
+            <div class="field">
+                <label>Descripción</label>
+                <input type="text" th:field="*{descripcion}" />
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label>Fecha inicio</label>
+                    <input type="date" th:field="*{fechaInicio}" />
+                </div>
+
+                <div class="field">
+                    <label>Fecha fin</label>
+                    <input type="date" th:field="*{fechaFinal}" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Anotación de resolución</label>
+                <input type="text" th:field="*{anotacion}" />
+            </div>
+
+            <div class="field">
+                <label>Estado</label>
+                <select th:field="*{estado}">
+                    <option th:each="e : ${T(com.demo.backGestor.modelos.Estado).values()}"
+                            th:value="${e.name()}"
+                            th:text="${e}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Guardar</button>
+
+        </form>
+
+        <a class="link" th:href="@{'/trabajo/listar/'+ ${2}}">← Volver al listado</a>
+
+    </section>
+
+</main>
+
 </body>
 </html>

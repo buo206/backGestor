@@ -1,50 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://ww.thymeleaf.org" >
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>taskRam</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 60%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        a {
-            text-decoration: none;
-            color: blue;
-        }
-    </style>
+    <link rel="stylesheet" href="/trabajoLista.css">
 </head>
 <body>
-<h1>Tareas  ==></h1>
-<a th:href="@{/clientes/nuevo}">Nuevo cliente</a>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
-    <tbody>
+<header class="header">
+    <img style="width: 120px ; height: auto" src="/logo.png">
+    <nav class="nav">
+        <a th:href="@{/}">Inicio</a>
+        <a href="#" style="color: deepskyblue">Trabajos</a>
+        <a href="#">Proyectos</a>
+        <a href="#">Contacto</a>
+    </nav>
+</header>
 
-    <tr th:each="c : ${trabajos}">
-        <td th:text="${c.idTrabajo}"></td>
-        <td th:text="${c.titulo}"></td>
-        <td th:text="${c.estado}"></td>
-        <td>
+<main class="main">
+    <section class="dialogo">
+        <h1>Tareas</h1>
+        <a class="btn" th:href="@{/clientes/nuevo}">Nuevo trabajo</a>
 
-        </td>
-    </tr>
-    </tbody>
-</table>
-</body>
-</html>
+        <table>
+            <thead>
+            <tr>
+                <th>ID Trabajo</th>
+                <th>Titulo</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="t : ${trabajos}">
+                <td th:text="${t.idTrabajo}"></td>
+                <td th:text="${t.titulo}"></td>
+                <td th:text="${t.estado}"></td>
+                <td>
+                    <a class="btn" th:href="@{/trabajo/editar/{id}(id=${t.idTrabajo})}">Editar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
