@@ -1,4 +1,6 @@
 package com.demo.backGestor.Dto;
 
-public record TrabajoListaDTO(int idTrabajo , String titulo , String estado) {
+import com.demo.backGestor.modelos.Estado;
+
+public record TrabajoListaDTO(int idTrabajo , String titulo , Estado estado) {
 }

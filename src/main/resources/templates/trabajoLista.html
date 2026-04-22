@@ -20,14 +20,14 @@
 <main class="main">
     <section class="dialogo">
         <h1>Tareas</h1>
-        <a class="btn" th:href="@{/clientes/nuevo}">Nuevo trabajo</a>
+        <a class="btn" th:href="@{/trabajo/nuevo/{id}(id=${2})}">Nuevo</a>
 
         <table>
             <thead>
             <tr>
                 <th>ID Trabajo</th>
                 <th>Titulo</th>
-                <th>Email</th>
+                <th>Estado</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -35,9 +35,16 @@
             <tr th:each="t : ${trabajos}">
                 <td th:text="${t.idTrabajo}"></td>
                 <td th:text="${t.titulo}"></td>
-                <td th:text="${t.estado}"></td>
+                <th:block th:switch="${t.estado}">
+                    <td th:text="${t.estado}" th:case="${T(com.demo.backGestor.modelos.Estado).P}" style="background-color: forestgreen"></td>
+                    <td th:text="${t.estado}" th:case="${T(com.demo.backGestor.modelos.Estado).F}" style="background-color:red"></td>
+                    <td th:text="${t.estado}" th:case="${T(com.demo.backGestor.modelos.Estado).E}" style="background-color:orange"></td>
+                    <td th:text="${t.estado}" th:case="${T(com.demo.backGestor.modelos.Estado).R}" style=" background-color:cyan"></td>
+                </th:block>
                 <td>
                     <a class="btn" th:href="@{/trabajo/editar/{id}(id=${t.idTrabajo})}">Editar</a>
+                    <a class="btn" th:href="@{/trabajo/eliminar/{id}(id=${t.idTrabajo})}"
+                       onclick="return confirm('¿Seguro que quieres eliminar esta tarea / trabajo ?');">Eliminar</a>
                 </td>
             </tr>
             </tbody>

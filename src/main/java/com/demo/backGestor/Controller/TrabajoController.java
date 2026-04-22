@@ -33,9 +33,23 @@ public class TrabajoController {
         return "EditarTrabajo.html" ;
     }
 
+    @GetMapping("nuevo/{idEmpresa}")
+    public String nuevo(@PathVariable int idEmpresa , Model model){
+        model.addAttribute("trabajo", service.nuevo(idEmpresa)) ;
+        return "EditarTrabajo.html" ;
+    }
+
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute Trabajo trabajo){
         service.guardar(trabajo) ;
         return "redirect:listar/"+2;
+    }
+
+    @GetMapping("eliminar/{idTrabajo}")
+    public String eliminar(@PathVariable int idTrabajo , Model model){
+        service.eliminar(idTrabajo);
+        List<TrabajoListaDTO> lista = service.lista(2);
+        model.addAttribute("trabajos" , lista);
+        return "trabajoLista.html";
     }
 }
