@@ -45,17 +45,18 @@ public class TrabajadorService {
             }
             Trabajador tr = new Trabajador();
             tr.setEmpresa(comprobarEmpresa.get());
-            tr.setEmail(trabajador.getEmail());
-            tr.setPassword(trabajador.getPassword());
-            tr.setApellidos(trabajador.getApellidos());
-            tr.setNombre(trabajador.getNombre());
-            tr.setNumeroTelefono(trabajador.getNumeroTelefono());
-            tr.setDni(trabajador.getDni());
-            tr.setDirreccion(trabajador.getDirreccion());
-            tr.setFechaCreacion(trabajador.getFechaCreacion());
+            tr.setEmail(trabajador.email());
+            tr.setPassword(trabajador.password());
+            tr.setApellidos(trabajador.apellidos());
+            tr.setNombre(trabajador.nombre());
+            tr.setNumeroTelefono(trabajador.numeroTelefono());
+            tr.setDni(trabajador.dni());
+            tr.setDirreccion(trabajador.dirreccion());
+            tr.setFechaCreacion(trabajador.fechaCreacion());
 
             Trabajador resultado = repo.save(tr);
             return repo.findByIdTrabajador(resultado.getIdTrabajador()).get();
+
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email");
         }

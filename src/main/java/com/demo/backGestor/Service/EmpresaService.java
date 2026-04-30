@@ -27,14 +27,14 @@ public class EmpresaService {
     }
 
     public EmpresaDTO crear(EmpresaDTO empresa){
-        Optional<Empresa> resultado = repo.findByEmail(empresa.getEmail()) ;
+        Optional<Empresa> resultado = repo.findByEmail(empresa.email()) ;
 
         if(resultado.isEmpty()){
             Empresa empresaX = new Empresa();
-            empresaX.setFechaCreacion(empresa.getFechaCreacion());
-            empresaX.setApellidos(empresa.getApellidos());
-            empresaX.setDirreccion(empresa.getDireccion());
-            empresaX.setNombre(empresa.getNombre());
+            empresaX.setFechaCreacion(empresa.fechaCreacion());
+            empresaX.setApellidos(empresa.apellidos());
+            empresaX.setDirreccion(empresa.direccion());
+            empresaX.setNombre(empresa.nombre());
 
             Empresa resultX = repo.save(empresaX);
             return this.buscarId(resultX.getIdEmpresa());

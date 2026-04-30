@@ -11,6 +11,6 @@ public record TrabajadorDTO(
         String password,
         String numeroTelefono,
         String dni,
-        String direccion,
+        String dirreccion,
         LocalDate fechaCreacion
 ) {}
