@@ -1,4 +1,8 @@
 package com.demo.backGestor.Dto;
 
-public record TrabajadorListaDTO(int id_Trabajador ,  String email , String nombre) {
+public interface TrabajadorListaDTO{
+    int getIdTrabajador();
+    String getEmail() ;
+    String getNombre();
+
 }

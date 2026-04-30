@@ -42,7 +42,7 @@ public class Trabajador {
     private String dirreccion;
 
     @Column(name = "FECHA_CREACION" , nullable = false )
-    private Date fecha_Creacion;
+    private Date fechaCreacion;
 
     public Trabajador(){
 
@@ -116,19 +116,19 @@ public class Trabajador {
         this.dirreccion = dirreccion;
     }
 
-    public LocalDate getFecha_Creacion() {
-        return fecha_Creacion.toLocalDate();
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion.toLocalDate();
     }
 
-    public void setFecha_Creacion(Date fecha_Creacion) {
-        this.fecha_Creacion = fecha_Creacion;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     @Override
     public String toString() {
         return "Trabajador{" +
                 "idTrabajador=" + idTrabajador +
-                ", id_Empresa=" + empresa.getId_Empresa() +
+                ", id_Empresa=" + empresa.getIdEmpresa() +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +
@@ -136,7 +136,7 @@ public class Trabajador {
                 ", numeroTelefono='" + numeroTelefono + '\'' +
                 ", dni='" + dni + '\'' +
                 ", dirreccion='" + dirreccion + '\'' +
-                ", fecha_Creacion=" + fecha_Creacion +
+                ", fecha_Creacion=" + fechaCreacion +
                 '}';
     }
 }

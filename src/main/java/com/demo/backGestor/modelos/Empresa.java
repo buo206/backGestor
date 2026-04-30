@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Empresas")
@@ -32,12 +33,24 @@ public class Empresa {
     private String direccion;
 
     @Column(name = "FECHA_CREACION" , nullable = false )
-    private Date fecha_Creacion;
+    private Date fechaCreacion;
+
+    //relaciones OneToMany
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Material> materiales;
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Trabajador> trabajadores;
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Trabajo> trabajos;
+
 
     public Empresa() {
     }
 
-    public int getId_Empresa() {
+    public int getIdEmpresa() {
         return idEmpresa;
     }
 
@@ -81,11 +94,35 @@ public class Empresa {
         this.direccion = dirreccion;
     }
 
-    public LocalDate getFecha_Creacion() {
-        return fecha_Creacion.toLocalDate();
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion.toLocalDate();
     }
 
-    public void setFecha_Creacion(Date fecha_Creacion) {
-        this.fecha_Creacion = fecha_Creacion;
+    public void setFechaCreacion(Date fecha_Creacion) {
+        this.fechaCreacion = fecha_Creacion;
+    }
+
+    public List<Material> getMateriales() {
+        return materiales;
+    }
+
+    public void setMateriales(List<Material> materiales) {
+        this.materiales = materiales;
+    }
+
+    public List<Trabajador> getTrabajadores() {
+        return trabajadores;
+    }
+
+    public void setTrabajadores(List<Trabajador> trabajadores) {
+        this.trabajadores = trabajadores;
+    }
+
+    public List<Trabajo> getTrabajos() {
+        return trabajos;
+    }
+
+    public void setTrabajos(List<Trabajo> trabajos) {
+        this.trabajos = trabajos;
     }
 }

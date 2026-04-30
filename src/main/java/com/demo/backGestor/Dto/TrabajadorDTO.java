@@ -3,15 +3,15 @@ package com.demo.backGestor.Dto;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public record TrabajadorDTO(
-        int idTrabajador,
-        int idEmpresa ,
-        String nombre,
-        String apellidos,
-        String email,
-        String password ,
-        String numeroTelefono,
-        String dni,
-        String dirreccion,
-        LocalDate fecha_Creacion
-) {}
+public interface TrabajadorDTO{
+        int getIdTrabajador();
+        int getIdEmpresa();
+        String getNombre();
+        String getApellidos();
+        String getEmail();
+        String getPassword() ;
+        String getNumeroTelefono() ;
+        String getDni();
+        String getDirreccion();
+        LocalDate getFechaCreacion();
+}

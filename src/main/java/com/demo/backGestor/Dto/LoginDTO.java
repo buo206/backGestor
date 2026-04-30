@@ -1,5 +1,6 @@
 package com.demo.backGestor.Dto;
 
-public record LoginDTO(String email, String password) {
-
+public interface LoginDTO{
+    String getEmail();
+    String getPassword();
 }

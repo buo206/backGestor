@@ -26,7 +26,7 @@ public class Material {
 
     }
 
-    public int getId_Material() {
+    public int getIdMaterial() {
         return idMaterial;
     }
 

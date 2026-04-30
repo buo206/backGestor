@@ -26,59 +26,20 @@ public class TrabajadorService {
     }
 
     public TrabajadorDTO validarEmailPassword(String email , String password){
-        Optional<Trabajador> trabajador  = repo.findByEmailAndPassword(email , password);
-        if(trabajador.isPresent()){
-            Trabajador t = trabajador.get();
-
-            return new TrabajadorDTO(
-                    t.getIdTrabajador(),
-                    t.getEmpresa().getId_Empresa() ,
-                    t.getNombre(),
-                    t.getApellidos(),
-                    t.getEmail(),
-                    t.getPassword(),
-                    t.getNumeroTelefono(),
-                    t.getDni(),
-                    t.getDirreccion(),
-                    t.getFecha_Creacion()
-            );
-        }else{
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email o password incorectos , no se ha encontrado nigun trabajador") ;
-        }
+        return repo.findByEmailAndPassword(email , password).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email o password incorectos , no se ha encontrado nigun trabajador"));
     }
 
 
     //traer directamente la lista de TrabajadorListaDTO
     public List<TrabajadorListaDTO> listar(int id ){
-        List<Trabajador> lista =  repo.findByEmpresa_IdEmpresa(id);
-        ArrayList<TrabajadorListaDTO> listaDTO = new ArrayList<>();
-        for(Trabajador tr : lista){
-            listaDTO.add(new TrabajadorListaDTO(tr.getIdTrabajador() , tr.getEmail() , tr.getNombre()));
-        }
+        List<TrabajadorListaDTO> lista =  repo.findByEmpresa_IdEmpresa(id);
 
-        if(listaDTO.isEmpty()){throw  new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajadro en esta emrpresa");}
-        return listaDTO;
+        if(lista.isEmpty()){throw  new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajadro en esta emrpresa");}
+        return lista;
     }
 
     public TrabajadorDTO crear(Trabajador trabajador){
-        Optional<Trabajador> aux = repo.findByEmail(trabajador.getEmail()) ;
-        if(aux.isEmpty()){
-            Trabajador t=  repo.save(trabajador);
-            return new TrabajadorDTO(
-                    t.getIdTrabajador(),
-                    t.getEmpresa().getId_Empresa() ,
-                    t.getNombre(),
-                    t.getApellidos(),
-                    t.getEmail(),
-                    t.getPassword(),
-                    t.getNumeroTelefono(),
-                    t.getDni(),
-                    t.getDirreccion(),
-                    t.getFecha_Creacion()
-            );
-        }else{
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email");
-        }
+        return repo.findByEmail(trabajador.getEmail()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email")) ;
     }
 
     public TrabajadorDTO buscarId(int id) {
@@ -89,7 +50,7 @@ public class TrabajadorService {
 
             return new TrabajadorDTO(
                     t.getIdTrabajador(),
-                    t.getEmpresa().getId_Empresa() ,
+                    t.getEmpresa().getIdEmpresa() ,
                     t.getNombre(),
                     t.getApellidos(),
                     t.getEmail(),
@@ -97,7 +58,7 @@ public class TrabajadorService {
                     t.getNumeroTelefono(),
                     t.getDni(),
                     t.getDirreccion(),
-                    t.getFecha_Creacion()
+                    t.getFechaCreacion()
             );
         }else{
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajador con este id ");
