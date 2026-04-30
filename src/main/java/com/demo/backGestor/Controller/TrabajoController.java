@@ -48,8 +48,6 @@ public class TrabajoController {
     @GetMapping("eliminar/{idTrabajo}")
     public String eliminar(@PathVariable int idTrabajo , Model model){
         service.eliminar(idTrabajo);
-        List<TrabajoListaDTO> lista = service.lista(2);
-        model.addAttribute("trabajos" , lista);
-        return "trabajoLista.html";
+        return "redirect:listar/"+2;
     }
 }

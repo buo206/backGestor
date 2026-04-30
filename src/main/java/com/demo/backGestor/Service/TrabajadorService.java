@@ -47,6 +47,8 @@ public class TrabajadorService {
         }
     }
 
+
+    //traer directamente la lista de TrabajadorListaDTO
     public List<TrabajadorListaDTO> listar(int id ){
         List<Trabajador> lista =  repo.findByEmpresa_IdEmpresa(id);
         ArrayList<TrabajadorListaDTO> listaDTO = new ArrayList<>();
