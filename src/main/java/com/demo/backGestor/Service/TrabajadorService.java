@@ -2,6 +2,7 @@ package com.demo.backGestor.Service;
 
 import com.demo.backGestor.ControllerRes.TrabajadorResController;
 import com.demo.backGestor.Dto.EmpresaDTO;
+import com.demo.backGestor.Dto.TrabajadorAltaDTO;
 import com.demo.backGestor.Dto.TrabajadorDTO;
 import com.demo.backGestor.Dto.TrabajadorListaDTO;
 import com.demo.backGestor.Repository.EmpresaRepository;
@@ -42,7 +43,7 @@ public class TrabajadorService {
         return lista;
     }
 
-    public TrabajadorDTO crear(TrabajadorDTO trabajador){
+    public TrabajadorDTO crear(TrabajadorAltaDTO trabajador){
         Optional<TrabajadorDTO> comprobante = repo.findByEmail(trabajador.getEmail());
         if(comprobante.isEmpty()){
             Optional<Empresa> comprobarEmpresa = repoEmpresa.findById(trabajador.getIdEmpresa());

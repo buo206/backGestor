@@ -1,6 +1,7 @@
 package com.demo.backGestor.ControllerRes;
 
 import com.demo.backGestor.Dto.LoginDTO;
+import com.demo.backGestor.Dto.TrabajadorAltaDTO;
 import com.demo.backGestor.Dto.TrabajadorDTO;
 import com.demo.backGestor.Dto.TrabajadorListaDTO;
 import com.demo.backGestor.Service.TrabajadorService;
@@ -34,7 +35,7 @@ public class TrabajadorResController {
     }
 
     @PostMapping("/alta")
-    public ResponseEntity<TrabajadorDTO> crear(@RequestBody TrabajadorDTO trabajador){
+    public ResponseEntity<TrabajadorDTO> crear(@RequestBody TrabajadorAltaDTO trabajador){
         TrabajadorDTO tr = service.crear(trabajador);
         return ResponseEntity.ok(tr);
     }

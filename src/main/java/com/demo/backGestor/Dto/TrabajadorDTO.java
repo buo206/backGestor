@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 public interface TrabajadorDTO{
         int getIdTrabajador();
-        int getIdEmpresa();
         String getNombre();
         String getApellidos();
         String getEmail();
