@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TrabajadorRepository extends JpaRepository<Trabajador, Integer> {
+    Optional<TrabajadorDTO> findByIdTrabajador(int id);
     Optional<TrabajadorDTO> findByEmailAndPassword(String email , String password);
     Optional<TrabajadorDTO> findByEmail(String email);
     List<TrabajadorListaDTO> findByEmpresa_IdEmpresa(int id );

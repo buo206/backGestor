@@ -23,7 +23,7 @@ public class TrabajadorResController {
 
     @PostMapping("/login")
     public ResponseEntity<TrabajadorDTO> login(@RequestBody LoginDTO login){
-        TrabajadorDTO trabajador = service.validarEmailPassword(login.email() , login.password());
+        TrabajadorDTO trabajador = service.validarEmailPassword(login.getEmail() , login.getPassword());
         return ResponseEntity.ok(trabajador);
     }
 
