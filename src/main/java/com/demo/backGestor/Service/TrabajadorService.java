@@ -43,25 +43,7 @@ public class TrabajadorService {
     }
 
     public TrabajadorDTO buscarId(int id) {
-        Optional<Trabajador> trabajador =   repo.findById(id) ;
+        return repo.findByIdTrabajador(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajador con este id ")) ;
 
-        if(trabajador.isPresent()){
-            Trabajador t = trabajador.get();
-
-            return new TrabajadorDTO(
-                    t.getIdTrabajador(),
-                    t.getEmpresa().getIdEmpresa() ,
-                    t.getNombre(),
-                    t.getApellidos(),
-                    t.getEmail(),
-                    t.getPassword(),
-                    t.getNumeroTelefono(),
-                    t.getDni(),
-                    t.getDirreccion(),
-                    t.getFechaCreacion()
-            );
-        }else{
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajador con este id ");
-        }
     }
 }

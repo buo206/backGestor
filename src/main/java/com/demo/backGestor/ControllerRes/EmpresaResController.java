@@ -26,7 +26,7 @@ public class EmpresaResController {
     //email y password
     @PostMapping("/login")
     public ResponseEntity<Empresa> login(@RequestBody LoginDTO login) {
-        Empresa empresa = service.validarEmailPassword(login.email(), login.password());
+        Empresa empresa = service.validarEmailPassword(login.getEmail(), login.getPassword());
         return ResponseEntity.ok(empresa); // 200 OK
     }
 
