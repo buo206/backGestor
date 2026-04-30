@@ -1,8 +1,10 @@
 package com.demo.backGestor.Service;
 
 import com.demo.backGestor.ControllerRes.TrabajadorResController;
+import com.demo.backGestor.Dto.EmpresaDTO;
 import com.demo.backGestor.Dto.TrabajadorDTO;
 import com.demo.backGestor.Dto.TrabajadorListaDTO;
+import com.demo.backGestor.Repository.EmpresaRepository;
 import com.demo.backGestor.Repository.TrabajadorRepository;
 import com.demo.backGestor.Repository.TrabajoRepository;
 import com.demo.backGestor.modelos.Empresa;
@@ -20,9 +22,11 @@ import java.util.Optional;
 @Service
 public class TrabajadorService {
     private final TrabajadorRepository repo ;
+    private final EmpresaRepository repoEmpresa ;
 
-    public TrabajadorService(TrabajadorRepository repo) {
+    public TrabajadorService(TrabajadorRepository repo, EmpresaRepository repoEmpresa) {
         this.repo = repo;
+        this.repoEmpresa = repoEmpresa;
     }
 
     public TrabajadorDTO validarEmailPassword(String email , String password){
@@ -38,8 +42,29 @@ public class TrabajadorService {
         return lista;
     }
 
-    public TrabajadorDTO crear(Trabajador trabajador){
-        return repo.findByEmail(trabajador.getEmail()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email")) ;
+    public TrabajadorDTO crear(TrabajadorDTO trabajador){
+        Optional<TrabajadorDTO> comprobante = repo.findByEmail(trabajador.getEmail());
+        if(comprobante.isEmpty()){
+            Optional<Empresa> comprobarEmpresa = repoEmpresa.findById(trabajador.getIdEmpresa());
+            if(comprobarEmpresa.isEmpty()){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe una empresa con ese id ");
+            }
+            Trabajador tr = new Trabajador();
+            tr.setEmpresa(comprobarEmpresa.get());
+            tr.setEmail(trabajador.getEmail());
+            tr.setPassword(trabajador.getPassword());
+            tr.setApellidos(trabajador.getApellidos());
+            tr.setNombre(trabajador.getNombre());
+            tr.setNumeroTelefono(trabajador.getNumeroTelefono());
+            tr.setDni(trabajador.getDni());
+            tr.setDirreccion(trabajador.getDirreccion());
+            tr.setFechaCreacion(trabajador.getFechaCreacion());
+
+            Trabajador resultado = repo.save(tr);
+            return repo.findByIdTrabajador(resultado.getIdTrabajador()).get();
+        }else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email");
+        }
     }
 
     public TrabajadorDTO buscarId(int id) {

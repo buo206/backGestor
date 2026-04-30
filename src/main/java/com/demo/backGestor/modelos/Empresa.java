@@ -33,7 +33,7 @@ public class Empresa {
     private String direccion;
 
     @Column(name = "FECHA_CREACION" , nullable = false )
-    private Date fechaCreacion;
+    private LocalDate fechaCreacion;
 
     //relaciones OneToMany
 
@@ -52,6 +52,10 @@ public class Empresa {
 
     public int getIdEmpresa() {
         return idEmpresa;
+    }
+
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa= idEmpresa;
     }
 
     public String getEmail() {
@@ -95,10 +99,10 @@ public class Empresa {
     }
 
     public LocalDate getFechaCreacion() {
-        return fechaCreacion.toLocalDate();
+        return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fecha_Creacion) {
+    public void setFechaCreacion(LocalDate fecha_Creacion) {
         this.fechaCreacion = fecha_Creacion;
     }
 

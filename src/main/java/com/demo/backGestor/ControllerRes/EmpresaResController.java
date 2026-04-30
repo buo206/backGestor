@@ -1,5 +1,6 @@
 package com.demo.backGestor.ControllerRes;
 
+import com.demo.backGestor.Dto.EmpresaDTO;
 import com.demo.backGestor.Dto.LoginDTO;
 import com.demo.backGestor.Service.EmpresaService;
 import com.demo.backGestor.modelos.Empresa;
@@ -18,22 +19,22 @@ public class EmpresaResController {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Empresa> buscarPorId(@PathVariable int id) {
-        Empresa empresa = service.buscarId(id);
+    public ResponseEntity<EmpresaDTO> buscarPorId(@PathVariable int id) {
+        EmpresaDTO empresa = service.buscarId(id);
         return ResponseEntity.ok(empresa);
     }
 
     //email y password
     @PostMapping("/login")
-    public ResponseEntity<Empresa> login(@RequestBody LoginDTO login) {
-        Empresa empresa = service.validarEmailPassword(login.getEmail(), login.getPassword());
+    public ResponseEntity<EmpresaDTO> login(@RequestBody LoginDTO login) {
+        EmpresaDTO empresa = service.validarEmailPassword(login.getEmail(), login.getPassword());
         return ResponseEntity.ok(empresa); // 200 OK
     }
 
     //se usa para registrar empresas
     @PostMapping("/alta")
-    public ResponseEntity<Empresa> crear(@RequestBody Empresa empresa) {
-        Empresa creada = service.crear(empresa);
+    public ResponseEntity<EmpresaDTO> crear(@RequestBody EmpresaDTO empresa) {
+        EmpresaDTO creada = service.crear(empresa);
         return ResponseEntity.status(HttpStatus.CREATED).body(creada); // 201 CREATED
     }
 }

@@ -1,5 +1,6 @@
 package com.demo.backGestor.Service;
 
+import com.demo.backGestor.Dto.EmpresaDTO;
 import com.demo.backGestor.Repository.EmpresaRepository;
 import com.demo.backGestor.modelos.Empresa;
 import org.springframework.http.HttpStatus;
@@ -17,19 +18,26 @@ public class EmpresaService {
         this.repo = repo;
     }
 
-    public Empresa buscarId(int id){
-        return  repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"No se ha encontrado ninguna empresa")) ;
+    public EmpresaDTO buscarId(int id){
+        return  repo.findByIdEmpresa(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"No se ha encontrado ninguna empresa")) ;
     }
 
-    public Empresa validarEmailPassword(String email , String password){
+    public EmpresaDTO validarEmailPassword(String email , String password){
         return  repo.findByEmailAndPassword(email , password).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha podido encontrar ninguna empresa , password o email incorrecto"));
     }
 
-    public Empresa crear(Empresa empresa){
+    public EmpresaDTO crear(EmpresaDTO empresa){
         Optional<Empresa> resultado = repo.findByEmail(empresa.getEmail()) ;
 
         if(resultado.isEmpty()){
-            return repo.save(empresa) ;
+            Empresa empresaX = new Empresa();
+            empresaX.setFechaCreacion(empresa.getFechaCreacion());
+            empresaX.setApellidos(empresa.getApellidos());
+            empresaX.setDirreccion(empresa.getDireccion());
+            empresaX.setNombre(empresa.getNombre());
+
+            Empresa resultX = repo.save(empresaX);
+            return this.buscarId(resultX.getIdEmpresa());
         }else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe una empresa con ese email");
         }

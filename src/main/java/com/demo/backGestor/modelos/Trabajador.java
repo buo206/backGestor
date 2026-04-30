@@ -42,7 +42,7 @@ public class Trabajador {
     private String dirreccion;
 
     @Column(name = "FECHA_CREACION" , nullable = false )
-    private Date fechaCreacion;
+    private LocalDate fechaCreacion;
 
     public Trabajador(){
 
@@ -117,13 +117,16 @@ public class Trabajador {
     }
 
     public LocalDate getFechaCreacion() {
-        return fechaCreacion.toLocalDate();
+        return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public int getIdEmpresa(){
+        return empresa.getIdEmpresa();
+    }
     @Override
     public String toString() {
         return "Trabajador{" +

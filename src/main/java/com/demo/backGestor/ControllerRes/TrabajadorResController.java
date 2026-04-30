@@ -34,7 +34,7 @@ public class TrabajadorResController {
     }
 
     @PostMapping("/alta")
-    public ResponseEntity<TrabajadorDTO> crear(@RequestBody Trabajador trabajador){
+    public ResponseEntity<TrabajadorDTO> crear(@RequestBody TrabajadorDTO trabajador){
         TrabajadorDTO tr = service.crear(trabajador);
         return ResponseEntity.ok(tr);
     }
