@@ -1,22 +1,15 @@
 package com.demo.backGestor.Service;
 
-import com.demo.backGestor.ControllerRes.TrabajadorResController;
-import com.demo.backGestor.Dto.EmpresaDTO;
-import com.demo.backGestor.Dto.TrabajadorAltaDTO;
 import com.demo.backGestor.Dto.TrabajadorDTO;
 import com.demo.backGestor.Dto.TrabajadorListaDTO;
 import com.demo.backGestor.Repository.EmpresaRepository;
 import com.demo.backGestor.Repository.TrabajadorRepository;
-import com.demo.backGestor.Repository.TrabajoRepository;
 import com.demo.backGestor.modelos.Empresa;
 import com.demo.backGestor.modelos.Trabajador;
-import com.demo.backGestor.modelos.Trabajo;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,10 +36,10 @@ public class TrabajadorService {
         return lista;
     }
 
-    public TrabajadorDTO crear(TrabajadorAltaDTO trabajador){
-        Optional<TrabajadorDTO> comprobante = repo.findByEmail(trabajador.getEmail());
+    public TrabajadorDTO crear(TrabajadorDTO trabajador){
+        Optional<TrabajadorDTO> comprobante = repo.findByEmail(trabajador.email());
         if(comprobante.isEmpty()){
-            Optional<Empresa> comprobarEmpresa = repoEmpresa.findById(trabajador.getIdEmpresa());
+            Optional<Empresa> comprobarEmpresa = repoEmpresa.findById(trabajador.idEmpresa());
             if(comprobarEmpresa.isEmpty()){
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe una empresa con ese id ");
             }

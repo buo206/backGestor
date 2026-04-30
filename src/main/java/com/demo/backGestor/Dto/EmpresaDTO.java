@@ -2,12 +2,12 @@ package com.demo.backGestor.Dto;
 
 import java.time.LocalDate;
 
-public interface EmpresaDTO {
-    int getIdEmpresa();
-    String getEmail();
-    String getPassword();
-    String getNombre();
-    String getApellidos();
-    String getDireccion();
-    LocalDate getFechaCreacion();
-}
+public record EmpresaDTO (
+    int idEmpresa,
+    String email,
+    String password,
+    String nombre,
+    String apellidos,
+    String direccion,
+    LocalDate fechaCreacion
+){}
