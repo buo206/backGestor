@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public record TrabajadorDTO(
+        int idTrabajador ,
         int idEmpresa,
         String nombre,
         String apellidos,

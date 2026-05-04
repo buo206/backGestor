@@ -55,7 +55,7 @@ public class TrabajadorService {
             tr.setFechaCreacion(trabajador.fechaCreacion());
 
             Trabajador resultado = repo.save(tr);
-            return repo.findByIdTrabajador(resultado.getIdTrabajador()).get();
+            return repo.buscarPorIdTrabajador(resultado.getIdTrabajador()).get();
 
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email");
@@ -63,7 +63,7 @@ public class TrabajadorService {
     }
 
     public TrabajadorDTO buscarId(int id) {
-        return repo.findByIdTrabajador(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajador con este id ")) ;
+        return repo.buscarPorIdTrabajador(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajador con este id ")) ;
 
     }
 }

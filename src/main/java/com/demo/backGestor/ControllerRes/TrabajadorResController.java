@@ -4,6 +4,7 @@ import com.demo.backGestor.Dto.LoginDTO;
 import com.demo.backGestor.Dto.TrabajadorDTO;
 import com.demo.backGestor.Dto.TrabajadorListaDTO;
 import com.demo.backGestor.Service.TrabajadorService;
+import com.demo.backGestor.modelos.Trabajador;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

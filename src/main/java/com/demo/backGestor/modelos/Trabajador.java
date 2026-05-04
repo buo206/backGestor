@@ -131,7 +131,7 @@ public class Trabajador {
     public String toString() {
         return "Trabajador{" +
                 "idTrabajador=" + idTrabajador +
-                ", id_Empresa=" + empresa.getIdEmpresa() +
+                ", idEmpresa=" + empresa.getIdEmpresa() +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +

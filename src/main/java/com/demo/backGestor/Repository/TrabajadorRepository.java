@@ -6,12 +6,29 @@ import com.demo.backGestor.modelos.Empresa;
 import com.demo.backGestor.modelos.Trabajador;
 import com.demo.backGestor.modelos.Trabajo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TrabajadorRepository extends JpaRepository<Trabajador, Integer> {
-    Optional<TrabajadorDTO> findByIdTrabajador(int id);
+
+    @Query("""
+    SELECT new com.demo.backGestor.Dto.TrabajadorDTO(
+        t.idTrabajador,
+        t.empresa.idEmpresa,
+        t.nombre,
+        t.apellidos,
+        t.email,
+        t.password,
+        t.numeroTelefono,
+        t.dni,
+        t.dirreccion,
+        t.fechaCreacion
+    )
+    FROM Trabajador t WHERE t.idTrabajador = :id """)
+    Optional<TrabajadorDTO> buscarPorIdTrabajador(int id);
+
     Optional<TrabajadorDTO> findByEmailAndPassword(String email , String password);
     Optional<TrabajadorDTO> findByEmail(String email);
     List<TrabajadorListaDTO> findByEmpresa_IdEmpresa(int id );
