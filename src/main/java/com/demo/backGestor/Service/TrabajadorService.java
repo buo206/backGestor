@@ -62,6 +62,33 @@ public class TrabajadorService {
         }
     }
 
+    public TrabajadorDTO modificar(TrabajadorDTO trabajador){
+        Optional<TrabajadorDTO> comprobante = repo.buscarPorIdTrabajador(trabajador.idTrabajador());
+        if(comprobante.isPresent()){
+            Optional<Empresa> comprobarEmpresa = repoEmpresa.findById(trabajador.idEmpresa());
+            if(comprobarEmpresa.isEmpty()){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe una empresa con ese id ");
+            }
+            Trabajador tr = new Trabajador();
+            tr.setIdTrabajador(trabajador.idTrabajador());
+            tr.setEmpresa(comprobarEmpresa.get());
+            tr.setEmail(trabajador.email());
+            tr.setPassword(trabajador.password());
+            tr.setApellidos(trabajador.apellidos());
+            tr.setNombre(trabajador.nombre());
+            tr.setNumeroTelefono(trabajador.numeroTelefono());
+            tr.setDni(trabajador.dni());
+            tr.setDirreccion(trabajador.dirreccion());
+            tr.setFechaCreacion(trabajador.fechaCreacion());
+
+            Trabajador resultado = repo.save(tr);
+            return repo.buscarPorIdTrabajador(resultado.getIdTrabajador()).get();
+
+        }else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No hay un trabajador con ese id");
+        }
+    }
+
     public TrabajadorDTO buscarId(int id) {
         return repo.buscarPorIdTrabajador(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "No se ha encontrado ningun trabajador con este id ")) ;
 

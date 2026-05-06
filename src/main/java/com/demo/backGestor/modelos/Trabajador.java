@@ -51,6 +51,9 @@ public class Trabajador {
     public int getIdTrabajador() {
         return idTrabajador;
     }
+    public void setIdTrabajador(int idTrabajador){
+        this.idTrabajador = idTrabajador ;
+    }
 
     public Empresa getEmpresa() {
         return empresa;

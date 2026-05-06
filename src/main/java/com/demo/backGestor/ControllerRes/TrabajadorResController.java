@@ -36,6 +36,11 @@ public class TrabajadorResController {
         TrabajadorDTO tr = service.crear(trabajador);
         return ResponseEntity.ok(tr);
     }
+    @PostMapping("/editar")
+    public ResponseEntity<TrabajadorDTO> modificar(@RequestBody TrabajadorDTO trabajador){
+        TrabajadorDTO tr = service.modificar(trabajador);
+        return ResponseEntity.ok(tr);
+    }
 
     @GetMapping("/buscar/{id}")
     public ResponseEntity<TrabajadorDTO> buscarPorId(@PathVariable int id) {
