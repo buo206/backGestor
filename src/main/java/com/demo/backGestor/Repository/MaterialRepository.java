@@ -30,4 +30,5 @@ public interface MaterialRepository extends JpaRepository<Material, Integer> {
     FROM Material m WHERE m.empresa.idEmpresa = :id """)
     List<MaterialDTO> findByEmpresa_IdEmpresa(int id );
 
+    Optional<Material> findByTituloIgnoreCaseAndEmpresa_IdEmpresa(String titulo , int idEmpresa);
 }

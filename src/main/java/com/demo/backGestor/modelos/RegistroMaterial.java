@@ -2,37 +2,40 @@ package com.demo.backGestor.modelos;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="REGISTRO_MATERIALES")
 public class RegistroMaterial {
-    @EmbeddedId
-    private RegistroMaterialId id ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_REGISTRO")
+    private Integer idRegistro;
 
     @ManyToOne
-    @MapsId("idTrabajo")
-    @JoinColumn(name = "ID_TRABAJO")
+    @JoinColumn(name = "ID_TRABAJO", nullable = false)
     private Trabajo trabajo;
 
     @ManyToOne
-    @MapsId("idMaterial")
-    @JoinColumn(name = "ID_MATERIAL")
+    @JoinColumn(name = "ID_MATERIAL", nullable = false)
     private Material material ;
 
-    @Column(name = "CANTIDAD" , length = 10)
+    @ManyToOne
+    @JoinColumn(name = "ID_TRABAJADOR", nullable = false)
+    private Trabajador trabajador;
+
+    @Column(name = "CANTIDAD", nullable = false)
     private int cantidad;
 
-    @Column(name = "FECHA")
-    private Date fecha ;
+    @Column(name = "FECHA", insertable = false, updatable = false)
+    private LocalDateTime fecha ;
 
-    public RegistroMaterialId getId() {
-        return id;
+    public Integer getIdRegistro() {
+        return idRegistro;
     }
 
-    public void setId(RegistroMaterialId id) {
-        this.id = id;
+    public void setIdRegistro(Integer idRegistro) {
+        this.idRegistro = idRegistro;
     }
 
     public Trabajo getTrabajo() {
@@ -51,6 +54,14 @@ public class RegistroMaterial {
         this.material = material;
     }
 
+    public Trabajador getTrabajador() {
+        return trabajador;
+    }
+
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
@@ -59,11 +70,11 @@ public class RegistroMaterial {
         this.cantidad = cantidad;
     }
 
-    public LocalDate getFecha() {
-        return fecha.toLocalDate();
+    public LocalDateTime getFecha() {
+        return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 }
