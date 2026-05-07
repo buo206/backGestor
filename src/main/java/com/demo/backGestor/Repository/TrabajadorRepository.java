@@ -29,7 +29,42 @@ public interface TrabajadorRepository extends JpaRepository<Trabajador, Integer>
     FROM Trabajador t WHERE t.idTrabajador = :id """)
     Optional<TrabajadorDTO> buscarPorIdTrabajador(int id);
 
+    @Query("""
+SELECT new com.demo.backGestor.Dto.TrabajadorDTO(
+    t.idTrabajador,
+    t.empresa.idEmpresa,
+    t.nombre,
+    t.apellidos,
+    t.email,
+    t.password,
+    t.numeroTelefono,
+    t.dni,
+    t.dirreccion,
+    t.fechaCreacion
+)
+FROM Trabajador t
+WHERE t.email = :email AND t.password = :password
+""")
     Optional<TrabajadorDTO> findByEmailAndPassword(String email , String password);
+
+    @Query("""
+SELECT new com.demo.backGestor.Dto.TrabajadorDTO(
+    t.idTrabajador,
+    t.empresa.idEmpresa,
+    t.nombre,
+    t.apellidos,
+    t.email,
+    t.password,
+    t.numeroTelefono,
+    t.dni,
+    t.dirreccion,
+    t.fechaCreacion
+)
+FROM Trabajador t
+WHERE t.email = :email
+""")
     Optional<TrabajadorDTO> findByEmail(String email);
+
+
     List<TrabajadorListaDTO> findByEmpresa_IdEmpresa(int id );
 }

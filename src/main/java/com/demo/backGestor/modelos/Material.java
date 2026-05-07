@@ -26,6 +26,7 @@ public class Material {
 
     }
 
+    public void setIdMaterial(int idMaterial){this.idMaterial = idMaterial ;}
     public int getIdMaterial() {
         return idMaterial;
     }
