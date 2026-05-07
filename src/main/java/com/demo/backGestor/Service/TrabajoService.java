@@ -1,5 +1,6 @@
 package com.demo.backGestor.Service;
 
+import com.demo.backGestor.Dto.TrabajoDTO;
 import com.demo.backGestor.Dto.TrabajoListaDTO;
 import com.demo.backGestor.Repository.EmpresaRepository;
 import com.demo.backGestor.Repository.TrabajoRepository;
@@ -24,20 +25,17 @@ public class TrabajoService {
         this.repoEmpresa = repoEmpresa;
     }
 
-    public List<TrabajoListaDTO> lista(int idEmpresa){
-        List<Trabajo> aux = repo.findByEmpresa_IdEmpresa(idEmpresa) ;
-        ArrayList<TrabajoListaDTO> resultado = new ArrayList<>();
-        if(!aux.isEmpty()){
-            for(Trabajo tr : aux){
-               // resultado.add(new TrabajoListaDTO(tr.getIdTrabajo() , tr.getTitulo() , tr.getEstado()));
-            }
+    public List<TrabajoListaDTO> listar(int idEmpresa){
+        Optional<Empresa> empresa = repoEmpresa.findById(idEmpresa);
+        if(empresa.isPresent()){
+            return repo.findByEmpresa_IdEmpresa(idEmpresa) ;
+        }else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe una empresa con este id ");
         }
-
-        return resultado ;
     }
 
-    public Trabajo buscar(int idTrabajo){
-        return repo.findById(idTrabajo).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , " no se ha encontrado ningun trabajo / tarea con este id"));
+    public TrabajoDTO buscar(int idTrabajo){
+        return repo.buscarPorIdTrabajador(idTrabajo).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , " no se ha encontrado ningun trabajo / tarea con este id"));
     }
 
     public Trabajo nuevo(int idEmpresa){

@@ -26,7 +26,7 @@ public interface RegistroMaterialRepository extends JpaRepository<RegistroMateri
         ON RM.ID_MATERIAL = M.ID_MATERIAL
     JOIN TRABAJADORES TR
         ON RM.ID_TRABAJADOR = TR.ID_TRABAJADOR
-    WHERE T.ID_EMPRESA = :idEmpresa
+    WHERE T.ID_EMPRESA = :idEmpresa ORDER BY RM.FECHA desc 
     """, nativeQuery = true)
     List<RegistroMaterialDTO> buscarPorEmpresa(@Param("idEmpresa") Integer idEmpresa);
 }

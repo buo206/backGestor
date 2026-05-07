@@ -30,7 +30,7 @@ public class Trabajo {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaInicio ;
 
-    @Column(name = "FECHA_FINAL" , nullable = false )
+    @Column(name = "FECHA_FINAL" , nullable = true )
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaFinal ;
 
