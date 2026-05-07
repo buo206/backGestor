@@ -1,7 +1,6 @@
 package com.demo.backGestor.ControllerRes;
 
-import com.demo.backGestor.Dto.MaterialListaDTO;
-import com.demo.backGestor.Dto.TrabajadorDTO;
+import com.demo.backGestor.Dto.MaterialDTO;
 import com.demo.backGestor.Service.MaterialService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +18,15 @@ public class MaterialResController {
 
 
     @GetMapping("/listar/{idEmpresa}")
-    public ResponseEntity<List<MaterialListaDTO>> listar(@PathVariable int idEmpresa ){
-        List<MaterialListaDTO> lista = service.listar(idEmpresa);
+    public ResponseEntity<List<MaterialDTO>> listar(@PathVariable int idEmpresa ){
+        List<MaterialDTO> lista = service.listar(idEmpresa);
         return ResponseEntity.ok(lista);
     }
 
 
     @PostMapping("/editar")
-    public ResponseEntity<MaterialListaDTO> modificar(@RequestBody MaterialListaDTO material){
-        MaterialListaDTO tr = service.modificar(material);
+    public ResponseEntity<MaterialDTO> modificar(@RequestBody MaterialDTO material){
+        MaterialDTO tr = service.modificar(material);
         return ResponseEntity.ok(tr);
     }
 }
