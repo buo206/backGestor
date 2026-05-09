@@ -1,14 +1,12 @@
 package com.demo.backGestor.ControllerRes;
 
 
+import com.demo.backGestor.Dto.TrabajadorDTO;
 import com.demo.backGestor.Dto.TrabajoDTO;
 import com.demo.backGestor.Dto.TrabajoListaDTO;
 import com.demo.backGestor.Service.TrabajoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +28,18 @@ public class TrabajoResController {
     @GetMapping("/buscar/{id}")
     public ResponseEntity<TrabajoDTO> buscarPorId(@PathVariable int id) {
         TrabajoDTO tr = service.buscar(id);
+        return ResponseEntity.ok(tr);
+    }
+
+
+    @PostMapping("/alta")
+    public ResponseEntity<TrabajoDTO> crear(@RequestBody TrabajoDTO trabajo ){
+        TrabajoDTO tr = service.alta(trabajo);
+        return ResponseEntity.ok(tr);
+    }
+    @PostMapping("/editar")
+    public ResponseEntity<TrabajoDTO> modificar(@RequestBody TrabajoDTO trabajo){
+        TrabajoDTO tr = service.modificar(trabajo);
         return ResponseEntity.ok(tr);
     }
 }

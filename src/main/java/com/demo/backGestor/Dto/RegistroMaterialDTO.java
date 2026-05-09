@@ -8,6 +8,8 @@ public record RegistroMaterialDTO(
         String tituloTrabajo ,
         int idMaterial,
         String tituloMaterial ,
+        int idTrabajador ,
+        String nombreTrabajador ,
         LocalDateTime fecha ,
         int cantidad
 ) {}
