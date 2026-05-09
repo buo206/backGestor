@@ -28,6 +28,12 @@ public class RegistroTrabajoResController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/buscarRegistroTrabajador/{idTrabajador}")
+    public ResponseEntity<List<RegistroTrabajoDTO>> buscarPorTrabajador(@PathVariable int idTrabajador) {
+        List<RegistroTrabajoDTO> lista = service.buscarPorTrabajador(idTrabajador);
+        return ResponseEntity.ok(lista);
+    }
+
     @GetMapping("/buscar/{idTrabajo}/{idTrabajador}")
     public ResponseEntity<RegistroTrabajoDTO> buscar(@PathVariable int idTrabajo, @PathVariable int idTrabajador) {
         RegistroTrabajoDTO registro = service.buscar(idTrabajo, idTrabajador);

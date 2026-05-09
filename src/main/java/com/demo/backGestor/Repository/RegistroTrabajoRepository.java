@@ -41,6 +41,22 @@ public interface RegistroTrabajoRepository extends JpaRepository<RegistroTrabajo
     """)
     List<RegistroTrabajoDTO> buscarPorTrabajo(int idTrabajo);
 
+
+    @Query("""
+    SELECT new com.demo.backGestor.Dto.RegistroTrabajoDTO(
+        rt.trabajo.idTrabajo,
+        rt.trabajo.titulo,
+        rt.trabajador.idTrabajador,
+        rt.trabajador.nombre,
+        rt.trabajador.apellidos,
+        rt.rol
+    )
+    FROM RegistroTrabajo rt
+    WHERE rt.trabajador.idTrabajador = :idTrabajador
+    ORDER BY rt.trabajador.nombre
+    """)
+    List<RegistroTrabajoDTO> buscarPorTrabajador(int idTrabajador);
+
     @Query("""
     SELECT new com.demo.backGestor.Dto.RegistroTrabajoDTO(
         rt.trabajo.idTrabajo,

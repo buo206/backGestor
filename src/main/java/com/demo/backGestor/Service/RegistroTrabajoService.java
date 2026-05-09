@@ -49,6 +49,15 @@ public class RegistroTrabajoService {
         }
     }
 
+    public List<RegistroTrabajoDTO> buscarPorTrabajador(int idTrabajador) {
+        Optional<Trabajo> trabajo = repoTrabajo.findById(idTrabajador);
+        if (trabajo.isPresent()) {
+            return repo.buscarPorTrabajador(idTrabajador);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No existe ningun trabajador con este id");
+        }
+    }
+
     public RegistroTrabajoDTO buscar(int idTrabajo, int idTrabajador) {
         return repo.buscarPorId(idTrabajo, idTrabajador)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "No existe ningun registro de trabajo con estos ids"));
