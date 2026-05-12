@@ -27,7 +27,7 @@ public class RegistroMaterial {
     @Column(name = "CANTIDAD", nullable = false)
     private int cantidad;
 
-    @Column(name = "FECHA", insertable = false, updatable = false)
+    @Column(name = "FECHA", nullable = false)
     private LocalDateTime fecha ;
 
     public Integer getIdRegistro() {
