@@ -79,4 +79,27 @@ public interface RegistroMaterialRepository extends JpaRepository<RegistroMateri
     Optional<RegistroMaterialDTO> buscarPorIdRegistro(@Param("idRegistro") Integer idRegistro);
 
 
+    @Query(value = """
+    SELECT 
+        RM.ID_REGISTRO AS idRegistro,
+        T.ID_TRABAJO AS idTrabajo,
+        T.TITULO AS tituloTrabajo,
+        M.ID_MATERIAL AS idMaterial,
+        M.TITULO AS tituloMaterial,
+        RM.ID_TRABAJADOR AS idTrabajador,
+        TR.NOMBRE AS nombreTrabajador ,
+        RM.FECHA AS fecha,
+        RM.CANTIDAD AS cantidad
+    FROM REGISTRO_MATERIALES RM
+    JOIN TRABAJOS T
+        ON RM.ID_TRABAJO = T.ID_TRABAJO
+    JOIN MATERIALES M
+        ON RM.ID_MATERIAL = M.ID_MATERIAL
+    JOIN TRABAJADORES TR
+        ON RM.ID_TRABAJADOR = TR.ID_TRABAJADOR
+    WHERE RM.ID_TRABAJADOR = :idTrabajador and  RM.ID_TRABAJO = :idTrabajo and RM.ID_MATERIAL = :idMaterial ORDER BY RM.FECHA desc 
+    """, nativeQuery = true)
+    Optional<RegistroMaterialDTO> buscarPorTrabajoTrabajadorMaterial(@Param("idTrabajador") Integer idTrabajador , @Param("idTrabajo") Integer idTrabajo , @Param("idMaterial") Integer idMaterial);
+
+
 }

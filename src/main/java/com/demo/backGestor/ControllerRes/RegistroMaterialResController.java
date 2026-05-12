@@ -30,6 +30,12 @@ public class RegistroMaterialResController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/buscarRegistroTodo/{idTrabajador}/{idTrabajo}/{idMaterial}")
+        public ResponseEntity<RegistroMaterialDTO> buscarPorTodo(@PathVariable int idTrabajador , @PathVariable int idTrabajo , @PathVariable int idMaterial ){
+        RegistroMaterialDTO resultado = service.buscarPorTrabajadorTrabajoMaterial(idTrabajador, idTrabajo , idMaterial);
+        return ResponseEntity.ok(resultado);
+    }
+
     @PostMapping("/editar")
     public ResponseEntity<RegistroMaterialDTO> modificar(@RequestBody RegistroMaterialDTO trabajo ){
         RegistroMaterialDTO tr = service.modificar(trabajo);

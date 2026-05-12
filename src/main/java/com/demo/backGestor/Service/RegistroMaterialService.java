@@ -40,6 +40,13 @@ public class RegistroMaterialService {
         return repo.buscarPorTrabajo(idTrabajo) ;
     }
 
+
+    public RegistroMaterialDTO buscarPorTrabajadorTrabajoMaterial(int idTrabajador , int idTrabajo , int idMaterial){
+        return repo.buscarPorTrabajoTrabajadorMaterial(idTrabajador , idTrabajo , idMaterial).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe ninguna registro de trabajo con estos ids "));
+    }
+
+
+
     public RegistroMaterialDTO modificar(RegistroMaterialDTO registro){
         Optional<RegistroMaterial> comprobante = repo.findById(registro.idRegistro());
         if(comprobante.isPresent()){
