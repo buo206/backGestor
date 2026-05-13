@@ -63,6 +63,13 @@ public class TrabajadorService {
     }
 
     public TrabajadorDTO modificar(TrabajadorDTO trabajador){
+        Optional<TrabajadorDTO> comprobanteExtra = repo.findByEmail(trabajador.email());
+        if(comprobanteExtra.isPresent()){
+            if(comprobanteExtra.get().idTrabajador() != trabajador.idTrabajador()){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "Ya hay un trabajador con ese email , por favor cambie el email");
+            }
+        }
+
         Optional<TrabajadorDTO> comprobante = repo.buscarPorIdTrabajador(trabajador.idTrabajador());
         if(comprobante.isPresent()){
             Optional<Empresa> comprobarEmpresa = repoEmpresa.findById(trabajador.idEmpresa());
