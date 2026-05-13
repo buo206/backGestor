@@ -24,7 +24,17 @@ public interface TrabajoRepository extends JpaRepository<Trabajo, Integer> {
         t.estado
     )
     FROM Trabajo t WHERE t.idTrabajo = :id """)
-    Optional<TrabajoDTO> buscarPorIdTrabajador(int id);
+    Optional<TrabajoDTO> buscarPorIdTrabajo(int id);
+
+
+    @Query("""
+    SELECT new com.demo.backGestor.Dto.TrabajoListaDTO(
+        t.idTrabajo,
+        t.titulo,
+        t.estado
+    )
+    FROM Trabajo t WHERE t.idTrabajo in (SELECT RT.trabajo.idTrabajo FROM RegistroTrabajo RT WHERE RT.trabajador.idTrabajador = :id) """)
+    List<TrabajoListaDTO> buscarPorIdTrabajador(int id);
 
     List<TrabajoListaDTO> findByEmpresa_IdEmpresa(int id );
 

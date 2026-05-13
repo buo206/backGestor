@@ -59,6 +59,11 @@ public class RegistroMaterialService {
             modificado.setEmpresa(material.get().getEmpresa());
             modificado.setTitulo(material.get().getTitulo());
 
+            Optional<Trabajador> trabajador = repoTrabajador.findById(registro.idTrabajador());
+            if(trabajador.isEmpty()){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe el trabajador al que se le intenta agenciar un registro");
+            }
+
             //comporbamos si hay que hay añadir strock al material o si hay que restarle
             if(registro.cantidad() > comprobante.get().getCantidad()){
                 int cantidadRestar = registro.cantidad() - comprobante.get().getCantidad();
@@ -79,7 +84,7 @@ public class RegistroMaterialService {
             rg.setIdRegistro(registro.idRegistro());
             rg.setMaterial(resultadoM);
             rg.setTrabajo(comprobante.get().getTrabajo());
-            rg.setTrabajador(comprobante.get().getTrabajador());
+            rg.setTrabajador(trabajador.get());
             rg.setCantidad(registro.cantidad());
             rg.setFecha(registro.fecha());
 

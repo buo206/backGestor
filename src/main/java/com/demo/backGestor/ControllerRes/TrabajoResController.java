@@ -25,6 +25,12 @@ public class TrabajoResController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/listarTrabajador/{idTrabjador}")
+    public ResponseEntity<List<TrabajoListaDTO>> listarTrabjador(@PathVariable int idTrabjador ){
+        List<TrabajoListaDTO> lista = service.listarPorTrabajador(idTrabjador);
+        return ResponseEntity.ok(lista);
+    }
+
     @GetMapping("/buscar/{id}")
     public ResponseEntity<TrabajoDTO> buscarPorId(@PathVariable int id) {
         TrabajoDTO tr = service.buscar(id);

@@ -35,7 +35,7 @@ public class TrabajoService {
     }
 
     public TrabajoDTO buscar(int idTrabajo){
-        return repo.buscarPorIdTrabajador(idTrabajo).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , " no se ha encontrado ningun trabajo / tarea con este id"));
+        return repo.buscarPorIdTrabajo(idTrabajo).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST , " no se ha encontrado ningun trabajo / tarea con este id"));
     }
 
     public TrabajoDTO modificar(TrabajoDTO trabajo){
@@ -52,7 +52,7 @@ public class TrabajoService {
             tr.setEstado(trabajo.estado());
 
             Trabajo resultado = repo.save(tr);
-            return repo.buscarPorIdTrabajador(resultado.getIdTrabajo()).get();
+            return repo.buscarPorIdTrabajo(resultado.getIdTrabajo()).get();
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe un trabajo con esta id");
         }
@@ -75,7 +75,7 @@ public class TrabajoService {
             tr.setEstado(trabajo.estado());
 
             Trabajo resultado = repo.save(tr);
-            return repo.buscarPorIdTrabajador(resultado.getIdTrabajo()).get();
+            return repo.buscarPorIdTrabajo(resultado.getIdTrabajo()).get();
         }else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe un trabajo con esta id");
         }
@@ -93,7 +93,9 @@ public class TrabajoService {
         }
     }
 
-
+    public List<TrabajoListaDTO> listarPorTrabajador(int idTrabajador){
+        return repo.buscarPorIdTrabajador(idTrabajador);
+    }
 
     public Trabajo guardar(Trabajo tr){
         return repo.save(tr);

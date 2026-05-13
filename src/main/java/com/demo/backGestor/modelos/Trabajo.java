@@ -34,7 +34,7 @@ public class Trabajo {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaFinal ;
 
-    @Column(name = "ANOTACION" , length = 300)
+    @Column(name = "ANOTACION" , length = 5000)
     private String anotacion;
 
     @Enumerated(EnumType.STRING)
