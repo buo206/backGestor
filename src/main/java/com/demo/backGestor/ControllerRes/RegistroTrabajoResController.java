@@ -52,9 +52,9 @@ public class RegistroTrabajoResController {
         return ResponseEntity.ok(tr);
     }
 
-    @DeleteMapping("/eliminar/{idTrabajo}/{idTrabajador}")
-    public ResponseEntity<Void> eliminar(@PathVariable int idTrabajo, @PathVariable int idTrabajador) {
+    @PostMapping("/eliminar/{idTrabajo}/{idTrabajador}")
+    public ResponseEntity<Boolean> eliminar(@PathVariable int idTrabajo, @PathVariable int idTrabajador) {
         service.eliminar(idTrabajo, idTrabajador);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(true);
     }
 }

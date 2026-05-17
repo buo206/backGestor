@@ -48,4 +48,10 @@ public class RegistroMaterialResController {
         return ResponseEntity.ok(tr);
     }
 
+    @PostMapping("/eliminar/{idRegistro}")
+    public ResponseEntity<Boolean> eliminar(@PathVariable int idRegistro){
+        service.eliminar(idRegistro);
+        return ResponseEntity.ok(true);
+    }
+
 }

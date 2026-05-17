@@ -6,7 +6,6 @@ import com.demo.backGestor.modelos.Empresa;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import tools.jackson.databind.node.StringNode;
 
 import java.util.Optional;
 
@@ -42,5 +41,25 @@ public class EmpresaService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe una empresa con ese email");
         }
 
+    }
+
+    public EmpresaDTO modificar(EmpresaDTO empresa){
+        Optional<Empresa> comprobanteEmail = repo.findByEmail(empresa.email());
+        if(comprobanteEmail.isPresent() && comprobanteEmail.get().getIdEmpresa() != empresa.idEmpresa()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe una empresa con ese email");
+        }
+
+        Empresa empresaX = repo.findById(empresa.idEmpresa())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se ha encontrado ninguna empresa"));
+
+        empresaX.setEmail(empresa.email());
+        empresaX.setPassword(empresa.password());
+        empresaX.setNombre(empresa.nombre());
+        empresaX.setApellidos(empresa.apellidos());
+        empresaX.setDirreccion(empresa.direccion());
+        empresaX.setFechaCreacion(empresa.fechaCreacion());
+
+        Empresa resultado = repo.save(empresaX);
+        return this.buscarId(resultado.getIdEmpresa());
     }
 }

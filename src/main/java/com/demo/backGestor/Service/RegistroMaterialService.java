@@ -138,4 +138,20 @@ public class RegistroMaterialService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe ningun registro de materiales con este id ");
         }
     }
+
+    public void eliminar(int idRegistro){
+        Optional<RegistroMaterial> registro = repo.findById(idRegistro);
+        if(registro.isPresent()){
+            repo.deleteById(idRegistro);
+
+            Optional<Material> material = repoMaterial.findById(registro.get().getMaterial().getIdMaterial());
+
+            Material obtenido =material.get();
+            obtenido.setStock(obtenido.getStock() + registro.get().getCantidad());
+            Material resultadoM = repoMaterial.save(obtenido);
+
+        }else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe ningun registro de materiales con este id");
+        }
+    }
 }

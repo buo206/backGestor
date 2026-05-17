@@ -48,4 +48,10 @@ public class TrabajoResController {
         TrabajoDTO tr = service.modificar(trabajo);
         return ResponseEntity.ok(tr);
     }
+
+    @PostMapping("/eliminar/{idTrabajo}")
+    public ResponseEntity<Boolean> eliminar(@PathVariable int idTrabajo){
+        service.eliminar(idTrabajo);
+        return ResponseEntity.ok(true);
+    }
 }

@@ -3,7 +3,6 @@ package com.demo.backGestor.ControllerRes;
 import com.demo.backGestor.Dto.EmpresaDTO;
 import com.demo.backGestor.Dto.LoginDTO;
 import com.demo.backGestor.Service.EmpresaService;
-import com.demo.backGestor.modelos.Empresa;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +35,12 @@ public class EmpresaResController {
     public ResponseEntity<EmpresaDTO> crear(@RequestBody EmpresaDTO empresa) {
         EmpresaDTO creada = service.crear(empresa);
         return ResponseEntity.status(HttpStatus.CREATED).body(creada); // 201 CREATED
+    }
+
+    @PostMapping("/editar")
+    public ResponseEntity<EmpresaDTO> modificar(@RequestBody EmpresaDTO empresa) {
+        EmpresaDTO modificada = service.modificar(empresa);
+        return ResponseEntity.ok(modificada);
     }
 }
 

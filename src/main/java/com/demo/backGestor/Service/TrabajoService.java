@@ -102,6 +102,10 @@ public class TrabajoService {
     }
 
     public void eliminar(int idTrabajo){
+        if(!repo.existsById(idTrabajo)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST , "No existe ningun trabajo con este id");
+        }
+
         repo.deleteById(idTrabajo);
     }
 }

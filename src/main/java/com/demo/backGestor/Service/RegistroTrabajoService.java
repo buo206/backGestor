@@ -109,4 +109,5 @@ public class RegistroTrabajoService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No existe ningun registro de trabajo con estos ids");
         }
     }
+
 }
